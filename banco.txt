@@ -1,0 +1,64 @@
+create database classIF;
+use classIF;
+
+create table usuario(
+	id_usuario INT NOT NULL AUTO_INCREMENT,
+	usuario VARCHAR(30) NOT NULL UNIQUE,
+	senha VARCHAR(50) NOT NULL,
+	email VARCHAR(50) NOT NULL UNIQUE,
+	telefone VARCHAR(15) NOT NULL,
+	cidade VARCHAR(30) NOT NULL,
+	PRIMARY KEY (id_usuario)
+);
+
+create table uf(
+	id_uf INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(20),
+	sigla VARCHAR(3),
+	PRIMARY KEY(id_uf)
+);
+
+create table cidade(
+	id_cidade INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(50) NOT NULL,
+	id_uf INT NOT NULL,
+	PRIMARY KEY(id_cidade),
+	FOREIGN KEY(id_uf) REFERENCES uf(id_uf)
+);
+
+create table categoria(
+	id_categoria INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(50) NOT NULL,
+	PRIMARY KEY(id_categoria)
+);
+
+create table classificado(
+	id_classificado INT NOT NULL AUTO_INCREMENT,
+	titulo VARCHAR(100) NOT NULL,
+	descricao TEXT NOT NULL,
+	valor FLOAT NOT NULL,
+	novo BOOLEAN NOT NULL,
+	criado_em DATETIME NOT NULL,
+	id_usuario INT NOT NULL,
+	PRIMARY KEY (id_classificado),
+	FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario)
+);
+
+create table imagem(
+	id_imagem INT NOT NULL AUTO_INCREMENT,
+	url VARCHAR(100) NOT NULL,
+	id_classificado INT NOT NULL,
+	PRIMARY KEY (id_imagem),
+	FOREIGN KEY(id_classificado) REFERENCES classificado(id_classificado)
+);
+
+create table mensagem(
+	id_mensagem INT NOT NULL AUTO_INCREMENT,
+	email VARCHAR(50) NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	conteudo TEXT NOT NULL,
+	criado_em DATETIME NOT NULL,
+	id_classificado INT NOT NULL,
+	PRIMARY KEY(id_mensagem),
+	FOREIGN KEY(id_classificado) REFERENCES classificado(id_classificado)
+);
