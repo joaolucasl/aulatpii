@@ -21,14 +21,15 @@ public final class Conexao {
 
     private void novaConexao() {
         String url = "jdbc:mysql://localhost:3306/";
-        String dbName = "classif";
-        String driver = "com.mysql.jdbc.Driver";
+        String dbName = "classIF";
+        String driver = "com.mysql.cj.jdbc.Driver";
         String userName = "root";
         String password = "";
         try {
             Class.forName(driver).newInstance();
             this.conn = (Connection) DriverManager.getConnection(url + dbName, userName, password);
         } catch (Exception ex) {
+            ex.printStackTrace();
             Logger.getLogger("DBConn").fatal("It was not possible to connect to the database. \n" + ex.getLocalizedMessage());
         }
     }
