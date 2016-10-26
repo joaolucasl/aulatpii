@@ -2,6 +2,7 @@ package classif.modelos;
 
 import classif.data_access.ClassificadoDAO;
 import org.apache.log4j.Logger;
+import com.google.gson.Gson;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -111,7 +112,12 @@ public class Classificado {
     return novoClassificado;
   }
 
+  public String toJSON() {
+    return new Gson().toJson(this);
+  }
+
   static public List<Classificado> listarTodos() {
     return new ClassificadoDAO().listarTodos();
   }
+
 }

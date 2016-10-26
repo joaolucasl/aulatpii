@@ -1,21 +1,14 @@
 package classif.controllers;
 
-import spark.ModelAndView;
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import classif.modelos.Classificado;
+import com.google.gson.Gson;
 import spark.template.handlebars.HandlebarsTemplateEngine;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import static spark.Spark.get;
+import static spark.Spark.*;
 
 public class ClassificadosController {
   public ClassificadosController() {
-    Map variaveis = new HashMap<String, String>();
-    variaveis.put("nome", "João");
-
-    get("/classificados", (request, response) -> new ModelAndView(variaveis, "hello.hbs"), new HandlebarsTemplateEngine());
+    get("/classificados", (request, response) -> new Gson().toJson(Classificado.listarTodos()));
   }
 }
