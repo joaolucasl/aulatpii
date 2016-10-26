@@ -32,29 +32,20 @@ public class ClassificadoDAO {
       } catch (SQLException e) {
       }
   }
-  public List<Classificado> consultar(){
+  public List<Classificado> listarTodos(){
     List<Classificado> lstA = new LinkedList<>();
     ResultSet rs;
     try{
         PreparedStatement ppStmt = dbConn.prepareStatement("SELECT * FROM classificado");
         rs = ppStmt.executeQuery();
         while(rs.next()){
-            lstA.add(getClassificado(rs));
+            lstA.add(Classificado.fromResultSet(rs));
         }
     }
     catch(SQLException ex){
+      ex.printStackTrace();
     }
     return lstA;
-  }
-
-  private Classificado getClassificado(ResultSet rs) throws SQLException{
-      Classificado c = new Classificado();
-      /* c.setModelo(rs.getString("modelo"));
-      c.setMarca(rs.getString("marca"));
-      c.setAno(rs.getInt("ano"));
-      c.setPlaca(rs.getString("placa")); */
-
-      return c;
   }
     
 }

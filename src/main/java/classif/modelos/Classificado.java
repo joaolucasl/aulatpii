@@ -1,7 +1,13 @@
 package classif.modelos;
 
+import classif.data_access.ClassificadoDAO;
+import org.apache.log4j.Logger;
+
 import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 public class Classificado {
   private int id;
@@ -11,6 +17,7 @@ public class Classificado {
   private boolean novo;
   private Date criado_em;
   private int id_usuario;
+
 
   public Classificado() {
   }
@@ -85,5 +92,26 @@ public class Classificado {
   public Classificado setIdUsuario(int id_usuario) {
     this.id_usuario = id_usuario;
     return this;
+  }
+
+  public static Classificado fromResultSet(ResultSet rs) {
+    Classificado novoClassificado = new Classificado();
+    try {
+      novoClassificado
+        .setId(rs.getInt("id_classificado"))
+        .setTitulo(rs.getString("titulo"))
+        .setDescricao(rs.getString("descricao"))
+        .setValor(BigDecimal.valueOf(rs.getFloat("valor")))
+        .setNovo(rs.getBoolean("novo"))
+        .setCriadoEm(rs.getDate("criado_em"))
+        .setIdUsuario(rs.getInt("id_usuario"));
+    } catch (SQLException ex) {
+      Logger.getLogger("Classificado").warn(ex.getLocalizedMessage());
+    }
+    return novoClassificado;
+  }
+
+  static public List<Classificado> listarTodos() {
+    return new ClassificadoDAO().listarTodos();
   }
 }
