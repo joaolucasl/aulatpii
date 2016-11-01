@@ -1,6 +1,11 @@
 package classif.modelos;
 
 
+import org.apache.log4j.Logger;
+
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -71,17 +76,33 @@ public class Usuario {
     return this;
   }
 
-  public Integer id_cidade() {
+  public Integer idCidade() {
     return id_cidade;
   }
 
-  public Usuario setId_cidade(Integer id_cidade) {
+  public Usuario setIdCidade(Integer id_cidade) {
     this.id_cidade = id_cidade;
     return this;
   }
 
   public String permissao() {
     return permissao;
+  }
+
+  public static Usuario fromResultSet(ResultSet rs) {
+    Usuario novoUsuario = new Usuario();
+    try {
+      novoUsuario
+        .setId(rs.getInt("id_classificado"))
+        .setUsername(rs.getString("titulo"))
+        .setEmail(rs.getString("email"))
+        .setTelefone(rs.getString("telefone"))
+        .setIdCidade(rs.getInt("cidade"))
+        .setPermissao(rs.getString("permissao"));
+    } catch (SQLException ex) {
+      Logger.getLogger("Usuario").warn(ex.getLocalizedMessage());
+    }
+    return novoUsuario;
   }
 
   public Usuario setPermissao(String permissao) {
