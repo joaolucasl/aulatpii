@@ -120,4 +120,7 @@ public class Classificado {
     return new ClassificadoDAO().listarTodos();
   }
 
+  static public Classificado buscarPorId(Integer id) {
+    return new ClassificadoDAO().buscarPorId(id);
+  }
 }

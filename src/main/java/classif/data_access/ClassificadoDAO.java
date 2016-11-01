@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
+ *33
  * @author Murilo
  */
 public class ClassificadoDAO {
@@ -41,11 +41,24 @@ public class ClassificadoDAO {
         while(rs.next()){
             lstA.add(Classificado.fromResultSet(rs));
         }
-    }
-    catch(SQLException ex){
+    } catch (SQLException ex){
       ex.printStackTrace();
     }
     return lstA;
   }
-    
+
+  public Classificado buscarPorId(Integer id){
+    Classificado novoClassificado = null;
+    try {
+      PreparedStatement query = dbConn.prepareStatement("SELECT * FROM classificado WHERE id_classificado = ?");
+      query.setInt(1, id);
+      ResultSet rs = query.executeQuery();
+      if(rs.first()) {
+        novoClassificado = Classificado.fromResultSet(rs);
+      }
+    } catch (SQLException ex){
+      ex.printStackTrace();
+    }
+    return (novoClassificado == null ? new Classificado() : novoClassificado);
+  }
 }
