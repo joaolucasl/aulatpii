@@ -32,6 +32,7 @@ public class ClassificadoDAO {
       } catch (SQLException e) {
       }
   }
+
   public List<Classificado> listarTodos(){
     List<Classificado> lstA = new LinkedList<>();
     ResultSet rs;

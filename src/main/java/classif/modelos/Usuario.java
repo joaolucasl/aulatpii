@@ -1,7 +1,9 @@
 package classif.modelos;
 
 
-import org.apache.log4j.Logger;
+import classif.data_access.UsuarioDAO;
+import com.google.gson.Gson;
+import org.slf4j.impl.SimpleLoggerFactory;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -89,22 +91,6 @@ public class Usuario {
     return permissao;
   }
 
-  public static Usuario fromResultSet(ResultSet rs) {
-    Usuario novoUsuario = new Usuario();
-    try {
-      novoUsuario
-        .setId(rs.getInt("id_classificado"))
-        .setUsername(rs.getString("titulo"))
-        .setEmail(rs.getString("email"))
-        .setTelefone(rs.getString("telefone"))
-        .setIdCidade(rs.getInt("cidade"))
-        .setPermissao(rs.getString("permissao"));
-    } catch (SQLException ex) {
-      Logger.getLogger("Usuario").warn(ex.getLocalizedMessage());
-    }
-    return novoUsuario;
-  }
-
   public Usuario setPermissao(String permissao) {
     List<String> permissoesPossiveis = Arrays.asList("usuario", "admin");
 
@@ -115,5 +101,32 @@ public class Usuario {
     }
 
     return this;
+  }
+
+
+  public static Usuario buscarPorEmail(String email){
+    return new UsuarioDAO().buscarPorEmail(email);
+  }
+  public static Usuario fromResultSet(ResultSet rs) {
+    Usuario novoUsuario = new Usuario();
+    try {
+      novoUsuario
+        .setId(rs.getInt("id_usuario"))
+        .setUsername(rs.getString("usuario"))
+        .setEmail(rs.getString("email"))
+        .setSenha(rs.getString("senha"))
+        .setTelefone(rs.getString("telefone"))
+        .setIdCidade(rs.getInt("cidade"))
+        .setPermissao(rs.getString("permissao"));
+      System.out.print("Buildando Usuário com ResultSet");
+    } catch (SQLException ex) {
+      new SimpleLoggerFactory().getLogger("Usuario").warn(ex.getLocalizedMessage());
+    }
+    return novoUsuario;
+  }
+
+  @Override
+  public String toString() {
+    return new Gson().toJson(this);
   }
 }

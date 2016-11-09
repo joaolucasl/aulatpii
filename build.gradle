@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     compile "com.sparkjava:spark-core:2.5"
-    compile 'org.slf4j:slf4j-log4j12:1.6.1'
+    compile 'org.slf4j:slf4j-simple:1.6.1'
     compile group: 'com.github.jknack', name: 'handlebars', version: '4.0.6'
     compile group: 'com.github.jknack', name: 'handlebars-guava-cache', version: '4.0.6'
     compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.4'

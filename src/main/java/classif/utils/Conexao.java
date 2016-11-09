@@ -1,6 +1,6 @@
 package classif.utils;
 
-import org.apache.log4j.Logger;
+import org.slf4j.impl.SimpleLoggerFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,7 +30,7 @@ public final class Conexao {
             this.conn = (Connection) DriverManager.getConnection(url + dbName, userName, password);
         } catch (Exception ex) {
             ex.printStackTrace();
-            Logger.getLogger("DBConn").fatal("It was not possible to connect to the database. \n" + ex.getLocalizedMessage());
+            new SimpleLoggerFactory().getLogger("DBConn").error("It was not possible to connect to the database. \n" + ex.getLocalizedMessage());
         }
     }
 }

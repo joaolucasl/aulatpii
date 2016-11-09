@@ -1,8 +1,8 @@
 package classif.modelos;
 
 import classif.data_access.ClassificadoDAO;
-import org.apache.log4j.Logger;
 import com.google.gson.Gson;
+import org.slf4j.impl.SimpleLoggerFactory;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -107,7 +107,7 @@ public class Classificado {
         .setCriadoEm(rs.getDate("criado_em"))
         .setIdUsuario(rs.getInt("id_usuario"));
     } catch (SQLException ex) {
-      Logger.getLogger("Classificado").warn(ex.getLocalizedMessage());
+      new SimpleLoggerFactory().getLogger("Classificado").warn(ex.getLocalizedMessage());
     }
     return novoClassificado;
   }
