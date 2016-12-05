@@ -47,6 +47,23 @@ public class ClassificadoDAO {
     }
     return lstA;
   }
+  public List<Classificado> listarTodos(Integer limit){
+    List<Classificado> lstA = new LinkedList<>();
+    ResultSet rs;
+    try{
+      PreparedStatement ppStmt = dbConn.prepareStatement("SELECT * FROM classificado LIMIT ?");
+      ppStmt.setInt(1, limit);
+      rs = ppStmt.executeQuery();
+      while(rs.next()){
+        System.out.println("Novo Classificado");
+        lstA.add(Classificado.fromResultSet(rs));
+      }
+    } catch (SQLException ex){
+      ex.printStackTrace();
+    }
+    return lstA;
+  }
+
 
   public Classificado buscarPorId(Integer id){
     Classificado novoClassificado = null;

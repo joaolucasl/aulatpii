@@ -123,4 +123,5 @@ public class Classificado {
   static public Classificado buscarPorId(Integer id) {
     return new ClassificadoDAO().buscarPorId(id);
   }
+
 }

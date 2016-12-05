@@ -1,0 +1,49 @@
+@media(max-width: 1680px){
+	
+}
+
+@media(max-width: 1440px){
+
+}
+
+@media(max-width: 1366px){
+	.lp-banner .caption_top{top: 22vh;}
+}
+
+@media(max-width: 1280px){
+
+}
+
+@media(max-width: 1199px){
+
+}
+
+@media(max-width: 1024px){
+
+}
+
+@media(max-width: 980px){
+	.navbar-fixed-top .navbar-brand{padding-left: 0px !important;}
+	.navbar-fixed-top .navbar-brand img{width: 120px !important;}
+	.navbar-default .navbar-collapse li a{line-height: 26px !important}
+}
+
+@media(max-width: 830px){
+
+}
+
+@media(max-width: 768px){
+
+}
+
+@media(max-width: 767px){
+	
+}
+
+@media(max-width: 380px){
+	
+}
+
+@media(max-width: 320px){
+	
+}

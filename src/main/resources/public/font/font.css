@@ -1,0 +1,49 @@
+@font-face{
+	font-family: Journal;
+	src: url(JOURNAL.TTF);
+}
+
+@font-face{
+	font-family: Moonbold;
+	src: url(Moonbold.ttf);
+}
+
+@font-face{
+	font-family: Oswald-light;
+	src: url(Oswald-Light.ttf);
+}
+
+@font-face{
+	font-family: Oswald-reg;
+	src: url(Oswald-Regular.ttf);
+}
+
+@font-face{
+	font-family: Myriad;
+	src: url(Myriadregular.ttf);
+}
+
+@font-face{
+	font-family: BogNoodle;
+	src: url("http://www.designzillas.com/sites/default/files/fontyourface/local_fonts/BigNoodle-normal-normal/big_noodle_titling-webfont.ttf");
+}
+
+@font-face{
+	font-family: Raleway;
+	src: url(Raleway-Medium.ttf);
+}
+
+@font-face{
+	font-family: Raleway-light;
+	src: url(Raleway-Light.ttf);
+}
+
+@font-face{
+	font-family: Wisdom;
+	src: url(wisdom.woff);
+}
+
+@font-face{
+	font-family: Varela;
+	src: url(VarelaRound-Regular.ttf);
+}
